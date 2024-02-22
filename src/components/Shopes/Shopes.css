@@ -1,0 +1,54 @@
+#block {
+  padding: 30px 20px 0 40px;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.block-text {
+  padding: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pana {
+  width: 600px;
+  height: 580px;
+  object-fit: cover;
+}
+.pana2 {
+  width: 430px;
+  height: 580px;
+  object-fit: cover;
+}
+.nike {
+  width: 490px;
+  height: 580px;
+  object-fit: cover;
+}
+.slaiders {
+  display: flex;
+  gap: 50px;
+  overflow-y: scroll;
+}
+.slaiders::-webkit-scrollbar {
+  display: none;
+}
+.vesna {
+  margin-left: 20px;
+}
+.slaider img {
+  width: 490px;
+  height: 580px;
+  object-fit: cover;
+}
+.slaider2:hover {
+  transform: scale(0, 1);
+  transition: 4s;
+}
+.block-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

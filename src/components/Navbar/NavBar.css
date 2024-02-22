@@ -1,0 +1,21 @@
+#navBar {
+  padding: 30px 0;
+}
+
+.rotate {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.rotate img {
+  width: 200px;
+}
+.rotate :hover {
+  transform: rotatey(360deg);
+  transition: 0.8s;
+}
+
+.p:hover {
+  transform: rotatey(0);
+  color: brown;
+}

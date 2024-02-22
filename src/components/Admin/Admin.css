@@ -1,0 +1,8 @@
+.btn_save:hover {
+  transform: scale(1.1);
+}
+.kolecsion {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

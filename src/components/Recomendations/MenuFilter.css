@@ -1,0 +1,27 @@
+.card {
+}
+.list {
+  padding: 0 0 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 90px;
+  flex-wrap: wrap;
+}
+.card {
+  border-radius: 10px;
+  padding: 10px 0;
+  text-align: center;
+  width: 350px;
+  background: #112b66d4;
+}
+
+.card_shop {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.card_text {
+  padding: 10px;
+}
