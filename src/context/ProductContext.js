@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 const ShopContext = createContext();
 export const useShop = () => useContext(ShopContext);
 
 const ProductContext = ({ children }) => {
   const API_SHOP = "http://localhost:3000/data";
 
+  const API_BASKET = "http://localhost:3000/data";
+
   const [data, setData] = useState([]);
+  const [basketData, setBasketData] = useState([]);
   const [oneProduct, setOneProduct] = useState({});
 
   async function shopProduct(newProduct) {
@@ -44,6 +48,20 @@ const ProductContext = ({ children }) => {
     return data.slice(next, prev);
   }
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  function fetchShopsParams(query, value) {
+    const searchParamsUrl = new URLSearchParams(location.search);
+    if (value === "all") {
+      searchParamsUrl.delete(query);
+    } else {
+      searchParamsUrl.set(query, value);
+    }
+    const url = `${location.pathname}?${searchParamsUrl.toString()}`;
+    navigate(url);
+  }
+
   const values = {
     shopProduct,
     readProduct,
@@ -56,6 +74,7 @@ const ProductContext = ({ children }) => {
     setPage,
     currentPage,
     count,
+    fetchShopsParams,
   };
   return <ShopContext.Provider value={values}>{children}</ShopContext.Provider>;
 };

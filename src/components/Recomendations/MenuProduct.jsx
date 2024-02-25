@@ -3,9 +3,10 @@ import { useShop } from "../../context/ProductContext";
 import MenuCard from "./MenuCard";
 import PaginateCard from "../PaginateCard/PaginateCard";
 import { Box } from "@mui/material";
+import NavbarSort from "../PaginateCard/NavbarSort";
 
 const MenuProduct = () => {
-  const { readProduct, data, currentPage, filtered } = useShop();
+  const { readProduct, data, currentPage } = useShop();
 
   useEffect(() => {
     readProduct();
@@ -19,7 +20,16 @@ const MenuProduct = () => {
           paddingBottom: "20px",
         }}
       >
-        <PaginateCard />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <PaginateCard />
+          <NavbarSort />
+        </Box>
       </Box>
 
       <Box className="list">

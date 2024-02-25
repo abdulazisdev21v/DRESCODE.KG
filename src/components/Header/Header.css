@@ -13,3 +13,14 @@
   border-radius: 50%;
   object-fit: cover;
 }
+.blocks {
+  position: relative;
+  margin-left: 400px;
+  width: 300px;
+  padding: 8px 0;
+  border-radius: 10px;
+}
+
+.icon {
+  position: absolute;
+}

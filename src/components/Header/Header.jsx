@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,37 +14,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import "./Header.css";
-import shop from "../../image/shop.png";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SellIcon from "@mui/icons-material/Sell";
 import { useShop } from "../../context/ProductContext";
-
-// const Search = styled("div")(({ theme }) => ({
-//   position: "relative",
-//   borderRadius: theme.shape.borderRadius,
-//   backgroundColor: alpha(theme.palette.common.white, 0.15),
-//   "&:hover": {
-//     backgroundColor: alpha(theme.palette.common.white, 0.25),
-//   },
-//   marginRight: theme.spacing(2),
-//   marginLeft: 0,
-//   width: "100%",
-//   [theme.breakpoints.up("sm")]: {
-//     marginLeft: theme.spacing(3),
-//     width: "auto",
-//   },
-// }));
-
-// const SearchIconWrapper = styled("div")(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: "100%",
-//   position: "absolute",
-//   pointerEvents: "none",
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "center",
-// }));
+import SearchIcon from "@mui/icons-material/Search";
+import { useAuthContext } from "../../context/AuthContext";
+import { Avatar, Tooltip } from "@mui/material";
+import provil from "../../image/provil.jpg";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -63,18 +40,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
   const [search, setSearch] = React.useState("");
   const { data, setData, readProduct } = useShop();
+  const { user, logOut } = useAuthContext();
 
   function shopSearch() {
     if (search.length === 0) {
       readProduct();
+    } else {
+      let result = data.filter((el) => el.name.toLowerCase().includes(search));
+      setData(result);
     }
-    let result = data.filter((el) => el.name.toLowerCase().includes(search));
-    setData(result);
   }
 
   React.useEffect(() => {
     shopSearch();
-  }, [search, data.length === 0]);
+  }, [data, search]);
+
+  function handleLogOut() {
+    logOut();
+    handleMenuClose();
+  }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -100,6 +84,10 @@ export default function Header() {
   };
 
   const menuId = "primary-search-account-menu";
+  function handleLogOut() {
+    logOut();
+    handleMenuClose();
+  }
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -119,7 +107,10 @@ export default function Header() {
       <Link to="/register">
         <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
+      <Link>
+        <MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
+      </Link>
+      <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
     </Menu>
   );
 
@@ -161,7 +152,7 @@ export default function Header() {
       <Box className="container">
         <AppBar position="static">
           <Toolbar sx={{ backgroundColor: "#112B66" }}>
-            <img className="images" src={shop} alt="images" />
+            <img className="images" src={provil} alt="images" />
 
             <Typography
               noWrap
@@ -170,26 +161,42 @@ export default function Header() {
             >
               DRESCODE.KG
             </Typography>
-
-            <Typography
+            <Box
               sx={{
-                padding: "0 0 0 20px",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
               }}
-              variant="h5"
             >
-              заказать сюда <ArrowForwardIosIcon />
-            </Typography>
-            <IconButton onClick={() => navigate("/admin")}>
-              <SellIcon sx={{ fontSize: "30px", color: "#fff" }} />
-            </IconButton>
-            <Link to="/">
-              <Typography>Shop</Typography>
-            </Link>
-            <div>
-              <input onChange={(e) => setSearch(e.target.value)} type="text" />
-            </div>
+              <Typography
+                sx={{
+                  padding: "0 0 0 20px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                variant="h5"
+              >
+                заказать сюда <ArrowForwardIosIcon />
+              </Typography>
+              <IconButton onClick={() => navigate("/admin")}>
+                <SellIcon sx={{ fontSize: "30px", color: "#fff" }} />
+              </IconButton>
+              <Box>
+                <input
+                  className="blocks"
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="text"
+                />
+                <SearchIcon
+                  sx={{
+                    fontSize: "40px",
+                    marginLeft: "-40px",
+                    color: "#000",
+                  }}
+                  className="icon"
+                />
+              </Box>
+            </Box>
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -211,17 +218,33 @@ export default function Header() {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              {user ? (
+                <Tooltip title={user.displayName}>
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                  >
+                    <Avatar src={user.photoURL} alt={user.displayName} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              )}
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton

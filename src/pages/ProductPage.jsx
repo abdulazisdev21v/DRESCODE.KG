@@ -4,7 +4,7 @@ import NavBar from "../components/Navbar/NavBar";
 import Shopes from "../components/Shopes/Shopes";
 import Header from "../components/Header/Header";
 import MenuProduct from "../components/Recomendations/MenuProduct";
-import MenuFilter from "../components/Recomendations/MenuFilter";
+import Footer from "../Footer/Footer";
 
 const ProductPage = () => {
   return (
@@ -13,12 +13,13 @@ const ProductPage = () => {
         <Header />
         <Shopes />
         <NavBar />
+
         <Box>
-          <MenuFilter />
           <Box>
             <MenuProduct />
           </Box>
         </Box>
+        <Footer />
       </Box>
     </div>
   );

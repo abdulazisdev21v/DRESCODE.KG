@@ -56,6 +56,7 @@ const Admin = () => {
               id="outlined-basic"
               label="Name"
               variant="filled"
+              value={name}
             />
             <TextField
               onChange={(e) => setPrice(e.target.value)}

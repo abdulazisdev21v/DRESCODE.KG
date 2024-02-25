@@ -12,6 +12,8 @@ const Shopes = () => {
       "https://media.istockphoto.com/id/1309275066/photo/adidas-store-in-hong-kong.jpg?s=612x612&w=0&k=20&c=2FxRDWJySYQami9-vi-sP5ZCP3B7So0VIIjuUmaMd8A=",
       "https://img.championat.com/c/1350x759/news/big/d/p/nike-vypuskaet-novuyu-model-air-force_16914919351907171072.jpg",
       "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2023%2F08%2Fmarc-marquez-asics-gel-1130-sole-mates-interview-00.jpg?w=960&cbr=1&q=90&fit=max",
+      "https://www.circlebdiecast.com/resize/Shared/Images/Product/Chase-Elliott-24-Kelley-Blue-Book-OSFM-Blue-Under-Armour-Hat/C246111020-2.jpg?bw=500&bh=500",
+      "https://image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-INT-Site/Library-Sites-LacosteContent/en/dw071cc375/fw23/homepage/2023-11-22/4C-lookbook-desktop.jpg?imwidth=840&impolicy=custom",
     ],
   };
   return (
@@ -27,7 +29,7 @@ const Shopes = () => {
                 fontWeight: "bold",
               }}
             >
-              Главная Одежда
+              Главная Мену
             </Typography>
             <Box>
               <Typography sx={{ fontWeight: "bold", fontSize: "30px" }}>

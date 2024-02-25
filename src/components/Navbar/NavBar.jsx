@@ -7,6 +7,7 @@ import logo3 from "../../image/logo3.jpg";
 import logo4 from "../../image/logo4.jpg";
 import logo5 from "../../image/logo5.jpg";
 import ShopList from "../Recomendations/ShopList";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -43,23 +44,25 @@ const NavBar = () => {
       >
         <Box className="rotate">
           <img src={logo1} alt="" />
-          <Typography className="p"> Рубашки</Typography>
+          <Link to="/section">
+            <Typography className="p"> Рубашки</Typography>
+          </Link>
         </Box>
         <Box className="rotate">
           <img src={logo2} alt="" />
-          <Typography className="p"> Рубашки</Typography>
+          <Typography className="p"> брюки</Typography>
         </Box>
         <Box className="rotate">
           <img src={logo3} alt="" />
-          <Typography className="p"> Рубашки</Typography>
+          <Typography className="p"> жакеты</Typography>
         </Box>
         <Box className="rotate">
           <img src={logo4} alt="" />
-          <Typography className="p"> Рубашки</Typography>
+          <Typography className="p"> платия</Typography>
         </Box>
         <Box className="rotate">
           <img src={logo5} alt="" />
-          <Typography className="p"> Рубашки</Typography>
+          <Typography className="p"> куртки</Typography>
         </Box>
         <Box className="rotate">
           <img src={logo1} alt="" />
