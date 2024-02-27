@@ -3,7 +3,7 @@
     {
       "id": "c825",
       "name": "nike",
-      "price": "2000",
+      "price": "2222",
       "type": "nike",
       "image": "https://img.joomcdn.net/9b98fb980446ecc48f5ba18690fd7a987f2c006a_original.jpeg"
     },
@@ -16,17 +16,17 @@
     },
     {
       "id": "85ee",
-      "name": "",
-      "price": "",
-      "type": "",
-      "image": ""
+      "name": " двойка код 999",
+      "price": "4000",
+      "type": "shops",
+      "image": "https://artj.com.ua/image/cache/data/21,10,2022/IMG_0071-500x750.JPG"
     },
     {
       "id": "347d",
-      "name": "",
-      "price": "",
-      "type": "",
-      "image": ""
+      "name": " двойка код 333",
+      "price": "3000",
+      "type": "shops",
+      "image": "https://ae04.alicdn.com/kf/S6c9c7af691fb4465a31301f571e9e723P.jpg_480x480.jpg"
     }
   ],
   "basket": []

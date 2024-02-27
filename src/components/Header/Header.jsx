@@ -22,6 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useAuthContext } from "../../context/AuthContext";
 import { Avatar, Tooltip } from "@mui/material";
 import provil from "../../image/provil.jpg";
+import { ADMIN_USER } from "../../helpers/const";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -84,35 +85,6 @@ export default function Header() {
   };
 
   const menuId = "primary-search-account-menu";
-  function handleLogOut() {
-    logOut();
-    handleMenuClose();
-  }
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <Link to="/register">
-        <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
-      </Link>
-      <Link>
-        <MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
-      </Link>
-      <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -146,6 +118,10 @@ export default function Header() {
     </Menu>
   );
   const navigate = useNavigate();
+  function handleLogOut() {
+    logOut();
+    handleMenuClose();
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -178,9 +154,17 @@ export default function Header() {
               >
                 заказать сюда <ArrowForwardIosIcon />
               </Typography>
+
+              {/* {ADMIN_USER.map((el) =>
+                user && el.email === user.email ? ( */}
               <IconButton onClick={() => navigate("/admin")}>
                 <SellIcon sx={{ fontSize: "30px", color: "#fff" }} />
               </IconButton>
+              {/* ) : (
+                  ""
+                )
+              )} */}
+
               <Box>
                 <input
                   className="blocks"
@@ -219,19 +203,44 @@ export default function Header() {
                 </Badge>
               </IconButton>
               {user ? (
-                <Tooltip title={user.displayName}>
-                  <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    color="inherit"
+                <>
+                  <Tooltip title={user.displayName}>
+                    <IconButton
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      <Avatar src={user.photoURL} alt={user.displayName} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    id={menuId}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={isMenuOpen}
+                    onClose={handleMenuClose}
                   >
-                    <Avatar src={user.photoURL} alt={user.displayName} />
-                  </IconButton>
-                </Tooltip>
+                    <Link to="/register">
+                      <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+                    </Link>
+                    <Link>
+                      <MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
+                  </Menu>
+                </>
               ) : (
                 <IconButton
                   size="large"
@@ -245,6 +254,28 @@ export default function Header() {
                   <AccountCircle />
                 </IconButton>
               )}
+              <Menu
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                id={menuId}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={isMenuOpen}
+                onClose={handleMenuClose}
+              >
+                <Link to="/register">
+                  <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+                </Link>
+                <Link to="/login">
+                  <MenuItem onClick={handleMenuClose}>Sign in</MenuItem>
+                </Link>
+              </Menu>
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -261,7 +292,6 @@ export default function Header() {
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
-        {renderMenu}
       </Box>
     </Box>
   );

@@ -53,6 +53,7 @@ const Register = () => {
           id="standard-basic"
           label="Логин"
           variant="standard"
+          type="password"
         />
         <Button
           onClick={hendleShopSumbit}

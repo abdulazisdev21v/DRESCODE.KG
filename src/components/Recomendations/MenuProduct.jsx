@@ -31,7 +31,6 @@ const MenuProduct = () => {
           <NavbarSort />
         </Box>
       </Box>
-
       <Box className="list">
         {data ? (
           currentPage().map((el) => <MenuCard el={el} />)

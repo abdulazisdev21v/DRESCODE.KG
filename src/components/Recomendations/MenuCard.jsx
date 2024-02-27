@@ -5,9 +5,12 @@ import { useShop } from "../../context/ProductContext";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+// import { useAuthContext } from "../../context/AuthContext";
+// import { ADMIN_USER } from "../../helpers/const";
 
 const MenuCard = ({ el }) => {
   const { deleteProduct } = useShop();
+  // const { user } = useAuthContext();
   return (
     <Box>
       <Box className="card">
@@ -27,6 +30,9 @@ const MenuCard = ({ el }) => {
             }}
           >
             <h1 style={{ color: "#fff" }}>{el.type}`men</h1>
+            {/* {ADMIN_USER.map((el) =>
+              user && el.email === user.email ? (
+                <> */}
             <DeleteIcon onClick={() => deleteProduct(el.id)} />
             <Link to={`/edit/${el.id}`}>
               <LocalMallIcon />
@@ -34,6 +40,11 @@ const MenuCard = ({ el }) => {
             <Link to={`/basket/${el.id}`}>
               <AddCircleIcon sx={{ color: "springgreen" }} />
             </Link>
+            {/* </>
+              ) : (
+                ""
+              )
+            )} */}
           </Box>
         </Box>
       </Box>

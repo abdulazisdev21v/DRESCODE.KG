@@ -10,7 +10,6 @@ const ProductContext = ({ children }) => {
   const API_BASKET = "http://localhost:3000/data";
 
   const [data, setData] = useState([]);
-  const [basketData, setBasketData] = useState([]);
   const [oneProduct, setOneProduct] = useState({});
 
   async function shopProduct(newProduct) {
